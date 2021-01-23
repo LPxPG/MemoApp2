@@ -1,23 +1,103 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "node": true,
+        "es6": true
+        // "es2021": true
+        // "jquery": true
     },
     "extends": [
-        "plugin:react/recommended",
+        // "plugin:react/recommended",
+        // "eslint:recommended"
         "airbnb"
+        // "standard"
     ],
     "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 8, // async があるとparse errorになるのを回避するために追記。
         "ecmaFeatures": {
             "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
+        }
     },
     "plugins": [
         "react"
     ],
     "rules": {
+        "indent": [
+            "warn",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "warn",
+            "windows"
+        ],
+        "quotes": [
+            "warn",
+            "single" //変更
+        ],
+        "semi": [
+            "warn",
+            "never" //変更
+        ],
+        "no-extra-semi": "warn", //追記
+        "no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "args": "none"
+            }
+        ],
+        "no-console": [
+            "off"
+        ],
+        //追記
+        "semi-spacing": "warn",
+        "no-multi-spaces": "warn",
+        "no-trailing-spaces": "warn",
+        "key-spacing": [
+            "warn",
+            {
+                "beforeColon": false
+            }
+        ],
+        "comma-spacing": [
+            "warn",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "array-bracket-spacing": "warn",
+        "spaced-comment": "warn",
+        "object-curly-spacing": 0,
+        "computed-property-spacing": "warn",
+        // "object-curly-newline": ["warn", {
+        //     "ObjectExpression": "always",
+        //     "ObjectPattern": { "multiline": true },
+        //     "ImportDeclaration": "never",
+        //     "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+        // }],
+        "block-spacing": "warn",
+        "keyword-spacing": "warn",
+        "template-curly-spacing": "warn",
+        "space-before-blocks": "warn",
+        "space-before-function-paren": [
+            "warn",
+            "always"
+        ],
+        "space-infix-ops": [
+            "warn"
+        ],
+        "no-multiple-empty-lines": [
+            "warn",
+            {
+                "max": 2
+            }
+        ],
+        "no-case-declarations": 0,
         "no-use-before-define": 0
     }
 }
