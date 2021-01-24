@@ -5,6 +5,8 @@ import {
 
 import AppBar from '../components/AppBar'
 import CircleButton from '../components/CircleButton'
+// import KeyboardSafeView from '../components/KeyboardSafeView'
+// KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
 
 export default function MemoEditScreen () {
   return (

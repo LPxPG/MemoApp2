@@ -1,10 +1,13 @@
 import React from 'react'
 import {
+  // View, TextInput, StyleSheet, KeyboardAvoidingView, Keyboard,
   View, TextInput, StyleSheet, KeyboardAvoidingView,
 } from 'react-native'
 
 import AppBar from '../components/AppBar'
 import CircleButton from '../components/CircleButton'
+// import KeyboardSafeView from '../components/KeyboardSafeView'
+// KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
 
 export default function MemoCreateScreen () {
   return (
@@ -13,6 +16,7 @@ export default function MemoCreateScreen () {
       <AppBar />
 
       <View style={styles.inputContainer}>
+        {/* <TextInput placeholder="新規メモ" value="" multiline style={styles.input} onSubmitEditing={Keyboard.dismiss} /> */}
         <TextInput placeholder="新規メモ" value="" multiline style={styles.input} />
       </View>
 
