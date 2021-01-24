@@ -3,22 +3,28 @@ import {
   View, TextInput, StyleSheet, KeyboardAvoidingView, Alert,
 } from 'react-native'
 
-import AppBar from '../components/AppBar'
+// import AppBar from '../components/AppBar'
 import CircleButton from '../components/CircleButton'
 // import KeyboardSafeView from '../components/KeyboardSafeView'
 // KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
 
-export default function MemoEditScreen () {
+export default function MemoEditScreen (props) {
+  const { navigation } = props
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
       {/* behavior : iOSでのcircle buttonの表示位置調整 */}
-      <AppBar />
+      {/* <AppBar /> */}
 
       <View style={styles.inputContainer}>
         <TextInput value="買い物リスト" multiline style={styles.input} />
       </View>
 
-      <CircleButton name="check" />
+      <CircleButton
+        name="check"
+        onPress={() => {
+          navigation.goBack()
+        }}
+      />
     </KeyboardAvoidingView>
   )
 }

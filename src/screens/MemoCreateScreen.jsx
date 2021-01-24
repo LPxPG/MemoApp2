@@ -9,18 +9,25 @@ import CircleButton from '../components/CircleButton'
 // import KeyboardSafeView from '../components/KeyboardSafeView'
 // KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
 
-export default function MemoCreateScreen () {
+export default function MemoCreateScreen (props) {
+  const { navigation } = props
+
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
       {/* behavior : iOSでのcircle buttonの表示位置調整 */}
-      <AppBar />
+      {/* <AppBar /> */}
 
       <View style={styles.inputContainer}>
         {/* <TextInput placeholder="新規メモ" value="" multiline style={styles.input} onSubmitEditing={Keyboard.dismiss} /> */}
         <TextInput placeholder="新規メモ" value="" multiline style={styles.input} />
       </View>
 
-      <CircleButton name="check" />
+      <CircleButton
+        name="check"
+        onPress={() => {
+          navigation.goBack()
+        }}
+      />
     </KeyboardAvoidingView>
   )
 }
