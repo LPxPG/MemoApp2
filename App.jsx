@@ -29,7 +29,7 @@ export default function App () {
 
           // 遷移アニメーションのデフォルトをiOS形式に統一
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          // スワイプによる画面遷移を有効化
+          // スワイプによる画面遷移を有効化 (iOSはデフォルトで有効)
           gestureEnabled: true,
           gestureDirection: 'horizontal',
         }}
