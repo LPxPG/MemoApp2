@@ -28,6 +28,7 @@ export default function MemoListScreen (props) {
   )
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 // import AppBar from '../components/AppBar'
 import Button from '../components/Button'
@@ -12,26 +12,26 @@ export default function SignUpScreen (props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handlePress () {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const { user } = userCredential
-        console.log('user.id', user.uid)
+  // function handlePress () {
+  //   firebase
+  //     .auth()
+  //     .createUserWithEmailAndPassword(email, password)
+  //     .then((userCredential) => {
+  //       const { user } = userCredential
+  //       console.log('user.id', user.uid)
 
-        navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
-          index: 0,
-          routes: [{
-            name: 'MemoList',
-          }],
-        })
-      })
-      .catch((error) => {
-        console.log('[firebase error]', error.code, error.message)
-        Alert.alert(error.code)
-      })
-  }
+  //       navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
+  //         index: 0,
+  //         routes: [{
+  //           name: 'MemoList',
+  //         }],
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log('[firebase error]', error.code, error.message)
+  //       Alert.alert(error.code)
+  //     })
+  // }
 
   return (
     <View style={styles.container}>
@@ -60,7 +60,15 @@ export default function SignUpScreen (props) {
 
         <Button
           label="Submit"
-          onPress={handlePress}
+          // onPress={handlePress}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{
+                name: 'MemoList',
+              }],
+            })
+          }}
         />
 
         <View style={styles.footer}>

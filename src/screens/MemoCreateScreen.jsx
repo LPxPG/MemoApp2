@@ -1,16 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   // View, TextInput, StyleSheet, KeyboardAvoidingView, Keyboard,
   View, TextInput, StyleSheet, KeyboardAvoidingView,
 } from 'react-native'
 
-import AppBar from '../components/AppBar'
+// import firebase from 'firebase'
+
+// import AppBar from '../components/AppBar'
 import CircleButton from '../components/CircleButton'
 // import KeyboardSafeView from '../components/KeyboardSafeView'
 // KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
 
 export default function MemoCreateScreen (props) {
   const { navigation } = props
+  const [bodyText, setBodyText] = useState('')
+
+  // function handlePress () {
+  //   const { currentUser } = firebase.auth()
+  //   const db = firebase.firestore()
+  //   const ref = db.collection(`users/${currentUser.uid}/memos`)
+
+  //   ref.add({
+  //     bodyText: bodyText,
+  // updatedAt: new Date(),
+  //   })
+  //     .then((docRef) => {
+  //       console.log('Created!', docRef.id)
+  //       navigation.goBack()
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error!', error)
+  //     })
+  // }
 
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
@@ -18,12 +39,19 @@ export default function MemoCreateScreen (props) {
       {/* <AppBar /> */}
 
       <View style={styles.inputContainer}>
-        {/* <TextInput placeholder="新規メモ" value="" multiline style={styles.input} onSubmitEditing={Keyboard.dismiss} /> */}
-        <TextInput placeholder="新規メモ" value="" multiline style={styles.input} />
+        <TextInput
+          placeholder="新規メモ"
+          value={bodyText}
+          multiline
+          style={styles.input}
+          onChangeText={(text) => { setBodyText(text) }}
+          autoFocus
+        />
       </View>
 
       <CircleButton
         name="check"
+        // onPress={handlePress}
         onPress={() => {
           navigation.goBack()
         }}
