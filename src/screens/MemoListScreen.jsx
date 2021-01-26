@@ -9,7 +9,7 @@ import LogOutButton from '../components/LogOutButton'
 
 export default function MemoListScreen (props) {
   const { navigation } = props
-  // const [memos, setMemos] = useState('')
+  const [memos, setMemos] = useState([])
 
   useEffect(() => {
     navigation.setOptions({
@@ -17,41 +17,41 @@ export default function MemoListScreen (props) {
     })
   }, [])
 
-  // useEffect(() => {
-  //   const db = firebase.firestore()
-  //   const { currentUser } = firebase.auth()
+  useEffect(() => {
+    const db = firebase.firestore()
+    const { currentUser } = firebase.auth()
 
-  //   let unsubscribe = () => {}
-  //   if (currentUser) {
-  //     const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc')
+    let unsubscribe = () => {}
+    if (currentUser) {
+      const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc')
 
-  //     unsubscribe = ref.onSnapshot((snapshot) => {
-  //       const userMemos = []
+      unsubscribe = ref.onSnapshot((snapshot) => {
+        const userMemos = []
 
-  //       snapshot.forEach((doc) => {
-  //         const data = doc.data()
+        snapshot.forEach((doc) => {
+          const data = doc.data()
+          console.log('MemoListItem', doc.id, doc.data())
+          userMemos.push({
+            id: doc.id,
+            bodyText: data.bodyText,
+            updatedAt: data.updatedAt.toDate(),
+          })
+        })
+        setMemos(userMemos)
+      }, (error) => {
+        console.log(error)
+        Alert.alert('データの読み込みに失敗しました。')
+      })
+    }
 
-  //         userMemos.push({
-  //           id: doc.id,
-  //           bodyText: data.bodyText,
-  //           updatedAt: data.updatedAt.toDate(),
-  //         })
-  //       })
-  //       setMemos(userMemos)
-  //     }, (error) => {
-  //       console.log(error)
-  //       Alert.alert('データの読み込みに失敗しました。')
-  //     })
-  //   }
+    return unsubscribe
+  }, [])
 
-  //   return unsubscribe
-  // }, [])
 
   return (
     <View style={styles.container}>
       {/* <AppBar /> */}
-      {/* <MemoList memos={memos} /> */}
-      <MemoList />
+      <MemoList memos={memos} />
       <CircleButton
         name="plus"
         onPress={() => {

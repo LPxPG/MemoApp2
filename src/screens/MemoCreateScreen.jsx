@@ -4,7 +4,7 @@ import {
   View, TextInput, StyleSheet, KeyboardAvoidingView,
 } from 'react-native'
 
-// import firebase from 'firebase'
+import firebase from 'firebase'
 
 // import AppBar from '../components/AppBar'
 import CircleButton from '../components/CircleButton'
@@ -15,23 +15,23 @@ export default function MemoCreateScreen (props) {
   const { navigation } = props
   const [bodyText, setBodyText] = useState('')
 
-  // function handlePress () {
-  //   const { currentUser } = firebase.auth()
-  //   const db = firebase.firestore()
-  //   const ref = db.collection(`users/${currentUser.uid}/memos`)
+  function handlePress () {
+    const { currentUser } = firebase.auth()
+    const db = firebase.firestore()
+    const ref = db.collection(`users/${currentUser.uid}/memos`)
 
-  //   ref.add({
-  //     bodyText: bodyText,
-  // updatedAt: new Date(),
-  //   })
-  //     .then((docRef) => {
-  //       console.log('Created!', docRef.id)
-  //       navigation.goBack()
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error!', error)
-  //     })
-  // }
+    ref.add({
+      bodyText,
+      updatedAt: new Date(),
+    })
+      .then((docRef) => {
+        console.log('Created!', docRef.id)
+        navigation.goBack()
+      })
+      .catch((error) => {
+        console.log('Error!', error)
+      })
+  }
 
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
@@ -51,10 +51,10 @@ export default function MemoCreateScreen (props) {
 
       <CircleButton
         name="check"
-        // onPress={handlePress}
-        onPress={() => {
-          navigation.goBack()
-        }}
+        onPress={handlePress}
+        // onPress={() => {
+        //   navigation.goBack()
+        // }}
       />
     </KeyboardAvoidingView>
   )

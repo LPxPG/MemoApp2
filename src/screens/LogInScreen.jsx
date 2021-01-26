@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native'
-// import firebase from 'firebase'
+import firebase from 'firebase'
 
 // import AppBar from '../components/AppBar'
 import Button from '../components/Button'
@@ -12,52 +12,52 @@ export default function LogInScreen (props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // useEffect(() => {
-  //   console.log('useEffect!')
-  //   // 画面を離れるときに返値の関数が実行される。
-  //   return () => {
-  //     console.log('Unmount!')
-  //   }
-  // }, [])
+  useEffect(() => {
+    console.log('useEffect!')
+    // 画面を離れるときに返値の関数が実行される。
+    return () => {
+      console.log('Unmount!')
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   const unsubscribe = firebase
-  //     .auth()
-  //     .onAuthStateChanged((user) => {
-  //       if (user) {
-  //         navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
-  //           index: 0,
-  //           routes: [{
-  //             name: 'MemoList',
-  //           }],
-  //         })
-  //       }
-  //     })
+  useEffect(() => {
+    const unsubscribe = firebase
+      .auth()
+      .onAuthStateChanged((user) => {
+        if (user) {
+          navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
+            index: 0,
+            routes: [{
+              name: 'MemoList',
+            }],
+          })
+        }
+      })
 
-  //   // 画面を離れるときに返値の関数が実行される。
-  //   return unsubscribe
-  // }, [])
+    // 画面を離れるときに返値の関数が実行される。
+    return unsubscribe
+  }, [])
 
-  // function handlePress () {
-  //   firebase
-  //     .auth()
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then((userCredential) => {
-  //       const { user } = userCredential
-  //       console.log('user.id', user.uid)
+  function handlePress () {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const { user } = userCredential
+        console.log('user.id', user.uid)
 
-  //       navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
-  //         index: 0,
-  //         routes: [{
-  //           name: 'MemoList',
-  //         }],
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       console.log('[firebase error]', error.code, error.message)
-  //       Alert.alert(error.code)
-  //     })
-  // }
+        navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
+          index: 0,
+          routes: [{
+            name: 'MemoList',
+          }],
+        })
+      })
+      .catch((error) => {
+        console.log('[firebase error]', error.code, error.message)
+        Alert.alert(error.code)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -88,15 +88,15 @@ export default function LogInScreen (props) {
 
         <Button
           label="Submit"
-          // onPress={handlePress}
-          onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{
-                name: 'MemoList',
-              }],
-            })
-          }}
+          onPress={handlePress}
+          // onPress={() => {
+          //   navigation.reset({
+          //     index: 0,
+          //     routes: [{
+          //       name: 'MemoList',
+          //     }],
+          //   })
+          // }}
         />
 
         <View style={styles.footer}>
