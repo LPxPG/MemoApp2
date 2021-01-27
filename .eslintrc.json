@@ -72,7 +72,7 @@
         ],
         "array-bracket-spacing": "warn",
         "spaced-comment": "warn",
-        "object-curly-spacing": 0,
+        "object-curly-spacing": "warn",
         "computed-property-spacing": "warn",
         // "object-curly-newline": ["warn", {
         //     "ObjectExpression": "always",
@@ -86,7 +86,7 @@
         "space-before-blocks": "warn",
         "space-before-function-paren": [
             "warn",
-            "always"
+            "never"
         ],
         "space-infix-ops": [
             "warn"

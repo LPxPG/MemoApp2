@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native'
@@ -6,11 +6,13 @@ import firebase from 'firebase'
 
 // import AppBar from '../components/AppBar'
 import Button from '../components/Button'
+import Loading from '../components/Loading'
 
-export default function LogInScreen (props) {
-  const {navigation} = props
+export default function LogInScreen(props) {
+  const { navigation } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     console.log('useEffect!')
@@ -31,6 +33,8 @@ export default function LogInScreen (props) {
               name: 'MemoList',
             }],
           })
+        } else {
+          setLoading(false)
         }
       })
 
@@ -38,7 +42,8 @@ export default function LogInScreen (props) {
     return unsubscribe
   }, [])
 
-  function handlePress () {
+  function handlePress() {
+    setLoading(true)
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -57,11 +62,15 @@ export default function LogInScreen (props) {
         console.log('[firebase error]', error.code, error.message)
         Alert.alert(error.code)
       })
+      .then(() => {
+        setLoading(false)
+      })
   }
 
   return (
     <View style={styles.container}>
       {/* <AppBar /> */}
+      <Loading isLoading={isLoading} />
 
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
@@ -104,7 +113,7 @@ export default function LogInScreen (props) {
           <TouchableOpacity onPress={() => {
             navigation.reset({
               index: 0,
-              routes: [{name: 'SignUp'}],
+              routes: [{ name: 'SignUp' }],
             })
           }}
           >

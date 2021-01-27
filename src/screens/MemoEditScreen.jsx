@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {
-  View, TextInput, StyleSheet, KeyboardAvoidingView, Alert,
+  View, TextInput, StyleSheet, KeyboardAvoidingView, Alert, Platform,
 } from 'react-native'
 import { shape, string } from 'prop-types'
 import firebase from 'firebase'
@@ -36,7 +36,7 @@ export default function MemoEditScreen (props) {
 
 
   return (
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' && 'height'} style={styles.container}>
       {/* behavior : iOSでのcircle buttonの表示位置調整 */}
       {/* <AppBar /> */}
 

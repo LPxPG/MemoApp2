@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   // View, TextInput, StyleSheet, KeyboardAvoidingView, Keyboard,
-  View, TextInput, StyleSheet, KeyboardAvoidingView,
+  View, TextInput, StyleSheet, KeyboardAvoidingView, Platform,
 } from 'react-native'
 
 import firebase from 'firebase'
@@ -34,7 +34,7 @@ export default function MemoCreateScreen (props) {
   }
 
   return (
-    <KeyboardAvoidingView behavior="height" style={styles.container}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' && 'height'} style={styles.container}>
       {/* behavior : iOSでのcircle buttonの表示位置調整 */}
       {/* <AppBar /> */}
 
