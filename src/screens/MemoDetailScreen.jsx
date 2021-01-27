@@ -45,17 +45,20 @@ export default function MemoDetailScreen(props) {
 
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle} numberOfLines={1}>
-          {memo && memo.bodyText}
+          {memo && memo.bodyText.split(/[\r\n]/)[0]}
         </Text>
         <Text style={styles.memoDate}>
           {memo && dateToString(memo.updatedAt)}
         </Text>
       </View>
 
-      <ScrollView style={styles.memoBody}>
-        <Text style={styles.memoText}>
-          { memo && memo.bodyText }
-        </Text>
+      {/* <ScrollView style={styles.memoBody}> */}
+      <ScrollView>
+        <View style={styles.memoBodyInner}>
+          <Text style={styles.memoText}>
+            { memo && memo.bodyText }
+          </Text>
+        </View>
       </ScrollView>
 
       <CircleButton
@@ -106,7 +109,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
   },
-  memoBody: {
+  // memoBody: {
+  //   paddingVertical: 32,
+  //   paddingHorizontal: 27,
+  // },
+  // ↕ iOSでのメモ最後尾の表示調整による変更
+  memoBodyInner: {
     paddingVertical: 32,
     paddingHorizontal: 27,
   },

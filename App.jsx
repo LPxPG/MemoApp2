@@ -1,4 +1,5 @@
 import React from 'react'
+import { LogBox } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import firebase from 'firebase'
@@ -16,12 +17,17 @@ require('firebase/firestore')
 
 const Stack = createStackNavigator()
 
+// L102 : Warning非表示 "setting a timer for a long period of time"
+LogBox.ignoreLogs([
+  'Setting a timer',
+])
+
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
 
-export default function App () {
+export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator

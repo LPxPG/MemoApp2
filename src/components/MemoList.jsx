@@ -55,8 +55,8 @@ export default function MemoList(props) {
         }}
       >
 
-        <View>
-          <Text style={styles.memoListItemTitle} numberOfLines={1}>{item.bodyText}</Text>
+        <View style={styles.memoInner}>
+          <Text style={styles.memoListItemTitle} numberOfLines={1}>{item.bodyText.split(/[\r\n]/)[0]}</Text>
           <Text style={styles.memoListItemDate}>{dateToString(item.updatedAt)}</Text>
         </View>
 
@@ -105,6 +105,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: 'rgba(0, 0, 0, 0.15)',
     elevation: 2,
+  },
+  memoInner: {
+    flex: 1,
   },
   memoListItemTitle: {
     fontSize: 16,
