@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   // View, TextInput, StyleSheet, KeyboardAvoidingView, Keyboard,
-  View, TextInput, StyleSheet, KeyboardAvoidingView, Platform,
+  View, TextInput, StyleSheet, KeyboardAvoidingView, Alert, Platform,
 } from 'react-native'
 
 import firebase from 'firebase'
@@ -10,12 +10,13 @@ import firebase from 'firebase'
 import CircleButton from '../components/CircleButton'
 // import KeyboardSafeView from '../components/KeyboardSafeView'
 // KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
+import { translateErrors } from '../utils'
 
-export default function MemoCreateScreen (props) {
+export default function MemoCreateScreen(props) {
   const { navigation } = props
   const [bodyText, setBodyText] = useState('')
 
-  function handlePress () {
+  function handlePress() {
     const { currentUser } = firebase.auth()
     const db = firebase.firestore()
     const ref = db.collection(`users/${currentUser.uid}/memos`)
@@ -29,7 +30,9 @@ export default function MemoCreateScreen (props) {
         navigation.goBack()
       })
       .catch((error) => {
-        console.log('Error!', error)
+        console.log('[firebase error]', error.code, error.message)
+        const errorMsg = translateErrors(error.code)
+        Alert.alert(errorMsg.title, errorMsg.description)
       })
   }
 

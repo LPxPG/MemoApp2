@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function AppBar () {
+export default function AppBar() {
   return (
     <View style={styles.appbar}>
       <View style={styles.appbarInner}>
@@ -11,7 +11,6 @@ export default function AppBar () {
     </View>
   )
 }
-
 
 const styles = StyleSheet.create({
   appbar: {

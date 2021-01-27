@@ -6,10 +6,10 @@ import firebase from 'firebase'
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function LogOutButton () {
+export default function LogOutButton() {
   const navigation = useNavigation()
 
-  function handlePress () {
+  function handlePress() {
     firebase
       .auth()
       .signOut()
@@ -18,11 +18,11 @@ export default function LogOutButton () {
         // const navigation = useNavigation()
         navigation.reset({
           index: 0,
-          routes: [{name: 'LogIn'}],
+          routes: [{ name: 'LogIn' }],
         })
       })
       .catch((error) => {
-        console.log(error.code)
+        console.log('[firebase error]', error.code, error.message)
         Alert.alert('ログアウトに失敗しました')
       })
   }

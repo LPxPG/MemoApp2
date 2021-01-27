@@ -9,11 +9,11 @@ import firebase from 'firebase'
 import CircleButton from '../components/CircleButton'
 import { dateToString } from '../utils'
 
-export default function MemoDetailScreen (props) {
+export default function MemoDetailScreen(props) {
   const { navigation, route } = props
   // ↑react-navigation から提供されるオブジェクト
   const { id } = route.params
-  console.log('route: ', route)
+  // console.log('route: ', route)
   const [memo, setMemo] = useState(null)
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function MemoDetailScreen (props) {
 
 MemoDetailScreen.propTypes = {
   route: shape({
-    params: shape({id: string}),
+    params: shape({ id: string }),
   }).isRequired,
 }
 

@@ -6,7 +6,7 @@ import { number, string, oneOf } from 'prop-types'
 import icomoon from '../../assets/fonts/icomoon.ttf'
 import selection from '../../assets/fonts/selection.json'
 
-export default function Icon (props) {
+export default function Icon(props) {
   const [fontLoaded] = useFonts({ icomoon })
   const { name, size, color } = props
   const CustomIcon = createIconSetFromIcoMoon(selection)
@@ -19,7 +19,7 @@ export default function Icon (props) {
       name={name}
       size={size}
       color={color}
-      style={{lineHeight: size - 1}}
+      style={{ lineHeight: size - 1 }}
       // Android での表示位置のずれを整えるfix
     />
   )

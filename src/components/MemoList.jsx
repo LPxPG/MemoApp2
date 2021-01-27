@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   StyleSheet, Text, View, TouchableOpacity, Alert, FlatList,
 } from 'react-native'
@@ -14,19 +14,12 @@ import { dateToString } from '../utils'
 export default function MemoList(props) {
   const { memos } = props
   // console.log('MemoList : ', memos)
-  const navigation = useNavigation()
   // const memos = [
   //   {id: 1, bodyText: 'Title 1', updatedAt: new Date()},
   //   {id: 2, bodyText: 'Title 2', updatedAt: new Date()},
   //   {id: 3, bodyText: 'Title 3', updatedAt: new Date()},
-  //   {id: 4, bodyText: 'Title 4', updatedAt: new Date()},
-  //   {id: 5, bodyText: 'Title 5', updatedAt: new Date()},
-  //   {id: 6, bodyText: 'Title 6', updatedAt: new Date()},
-  //   {id: 7, bodyText: 'Title 7', updatedAt: new Date()},
-  //   {id: 8, bodyText: 'Title 8', updatedAt: new Date()},
-  //   {id: 9, bodyText: 'Title 9', updatedAt: new Date()},
-  //   {id: 10, bodyText: 'Title 10', updatedAt: new Date()},
   // ]
+  const navigation = useNavigation()
 
   function deleteMemo(id) {
     const { currentUser } = firebase.auth()

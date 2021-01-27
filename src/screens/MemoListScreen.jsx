@@ -47,7 +47,7 @@ export default function MemoListScreen(props) {
         setLoading(false)
       }, (error) => {
         setLoading(false)
-        console.log(error)
+        console.log('[firebase error]', error.code, error.message)
         Alert.alert('データの読み込みに失敗しました。')
       })
     }

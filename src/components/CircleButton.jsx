@@ -4,7 +4,7 @@ import { shape, string, func } from 'prop-types'
 
 import Icon from './Icon'
 
-export default function CircleButton (props) {
+export default function CircleButton(props) {
   const {
     style, name, onPress,
   } = props

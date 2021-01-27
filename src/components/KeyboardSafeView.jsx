@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import { node } from 'prop-types'
 
-export default function KeyboardSafeView ({ children, style }) {
+export default function KeyboardSafeView({ children, style }) {
   const initialViewHeight = useRef(null)
   const animatedViewHeight = useRef(null)
   const [viewHeight, setViewHeight] = useState(null)
