@@ -7,6 +7,7 @@ import firebase from 'firebase'
 // import AppBar from '../components/AppBar'
 import Button from '../components/Button'
 import Loading from '../components/Loading'
+import { translateErrors } from '../utils'
 
 export default function LogInScreen(props) {
   const { navigation } = props
@@ -60,7 +61,8 @@ export default function LogInScreen(props) {
       })
       .catch((error) => {
         console.log('[firebase error]', error.code, error.message)
-        Alert.alert(error.code)
+        const errorMsg = translateErrors(error.code)
+        Alert.alert(errorMsg.title, errorMsg.description)
       })
       .then(() => {
         setLoading(false)

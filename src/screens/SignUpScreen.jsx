@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native'
@@ -6,13 +6,14 @@ import firebase from 'firebase'
 
 // import AppBar from '../components/AppBar'
 import Button from '../components/Button'
+import { translateErrors } from '../utils'
 
-export default function SignUpScreen (props) {
+export default function SignUpScreen(props) {
   const { navigation } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handlePress () {
+  function handlePress() {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -29,7 +30,8 @@ export default function SignUpScreen (props) {
       })
       .catch((error) => {
         console.log('[firebase error]', error.code, error.message)
-        Alert.alert(error.code)
+        const errorMsg = translateErrors(error.code)
+        Alert.alert(errorMsg.title, errorMsg.description)
       })
   }
 
@@ -76,7 +78,7 @@ export default function SignUpScreen (props) {
           <TouchableOpacity onPress={() => {
             navigation.reset({
               index: 0,
-              routes: [{name: 'LogIn'}],
+              routes: [{ name: 'LogIn' }],
             })
           }}
           >

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   View, TextInput, StyleSheet, KeyboardAvoidingView, Alert, Platform,
 } from 'react-native'
@@ -9,13 +9,15 @@ import firebase from 'firebase'
 import CircleButton from '../components/CircleButton'
 // import KeyboardSafeView from '../components/KeyboardSafeView'
 // KeyboardAvoidingViewの代替：iOSでの絵文字入力中のfix (逆にAndroidで表示が崩れるので未使用)
+import { translateErrors } from '../utils'
 
-export default function MemoEditScreen (props) {
+
+export default function MemoEditScreen(props) {
   const { navigation, route } = props
   const { id, bodyText } = route.params
   const [body, setBody] = useState(bodyText)
 
-  function handlePress () {
+  function handlePress() {
     const { currentUser } = firebase.auth()
     if (currentUser) {
       const db = firebase.firestore()
@@ -24,12 +26,14 @@ export default function MemoEditScreen (props) {
       ref.set({
         bodyText: body,
         updatedAt: new Date(),
-      }, {merge: true}) // merge:true 更新対象以外の既存のプロパティがあればマージする。
+      }, { merge: true }) // merge:true 更新対象以外の既存のプロパティがあればマージする。
         .then(() => {
           navigation.goBack()
         })
         .catch((error) => {
-          Alert.alert(error.code)
+          console.log('[firebase error]', error.code, error.message)
+          const errorMsg = translateErrors(error.code)
+          Alert.alert(errorMsg.title, errorMsg.description)
         })
     }
   }
@@ -59,7 +63,7 @@ export default function MemoEditScreen (props) {
 
 MemoEditScreen.propTypes = {
   route: shape({
-    params: shape({id: string, bodyText: string}),
+    params: shape({ id: string, bodyText: string }),
   }).isRequired,
 }
 
