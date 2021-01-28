@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.example.memoapp2",
-      "bundleNumber": "1.0.0"
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.example.memoapp2",
