@@ -8,40 +8,48 @@ import firebase from 'firebase'
 import Button from '../components/Button'
 import Loading from '../components/Loading'
 import { translateErrors } from '../utils'
+import CancelLogIn from '../components/CancelLogIn'
 
 export default function LogInScreen(props) {
   const { navigation } = props
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isLoading, setLoading] = useState(true)
+  // const [isLoading, setLoading] = useState(true)
+  const [isLoading, setLoading] = useState(false)
+
+  // useEffect(() => {
+  //   console.log('useEffect!')
+  //   // 画面を離れるときに返値の関数が実行される。
+  //   return () => {
+  //     console.log('Unmount!')
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   const unsubscribe = firebase
+  //     .auth()
+  //     .onAuthStateChanged((user) => {
+  //       if (user) {
+  //         navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
+  //           index: 0,
+  //           routes: [{
+  //             name: 'MemoList',
+  //           }],
+  //         })
+  //       } else {
+  //         setLoading(false)
+  //       }
+  //     })
+
+  //   // 画面を離れるときに返値の関数が実行される。
+  //   return unsubscribe
+  // }, [])
 
   useEffect(() => {
-    console.log('useEffect!')
-    // 画面を離れるときに返値の関数が実行される。
-    return () => {
-      console.log('Unmount!')
-    }
-  }, [])
-
-  useEffect(() => {
-    const unsubscribe = firebase
-      .auth()
-      .onAuthStateChanged((user) => {
-        if (user) {
-          navigation.reset({ // navigation履歴を操作 : 遷移後の戻るボタンを無効化
-            index: 0,
-            routes: [{
-              name: 'MemoList',
-            }],
-          })
-        } else {
-          setLoading(false)
-        }
-      })
-
-    // 画面を離れるときに返値の関数が実行される。
-    return unsubscribe
-  }, [])
+    navigation.setOptions({
+      headerRight: () => <CancelLogIn />,
+    })
+  })
 
   function handlePress() {
     setLoading(true)
